@@ -1,52 +1,27 @@
-# andela/dictionary
+#Urban Dictionary
+
+The Dictionary is a PHP agnostic package
+that returns meaning of slangs and 
+sample usage of the slang.
+
+#Design
+
+Classes
+ - Data: The Data Class that houses the dictionary array
+ - Dictionary: This is the Class that houses the five core
+   methods of the application which are as follows
+   -addWord($word);
+   -updateWord($word);
+   -findWord($word);
+   -removeWord($word);
+   -wordRanking($sentence)
 
 
-**AN URBAN DICTIONARY**
-This is a PHP agnostic package that returns meaning of slangs and sample usage of the slang
+#Testing
 
-## Install
-
-Clone the application github url and run composer install
-
-## Usage
-
-``` 
-    php
-    
-    $word = new \Andela\Dictionary\WordFunctions();
-
-    print_r(\Andela\Dictionary\Data::$data);
-
-    $word->addWord ( 'park', 'Tell someone to relax', 'Guy park well o' );
-    print_r(\Andela\Dictionary\Data::$data);
-
-    $word->updateWord ( 'park', 'Modified Description', 'Modified Sentence' );
-    print_r(\Andela\Dictionary\Data::$data);
-
-    print_r($word->findWord('park'));
-
-    $word->removeWord('park')
-    print_r(\Andela\Dictionary\Data::$data);
-
-```
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
-```
+ The framework for testing this application is 
+ phpunit and the TDD principle was used to 
+ make sure that the code was well tested.
 
 
 
-## Credits
-
-- Chidozie Ijeomah
-
-
-
-
-[link-author]: https://github.com/andela-cijeomah
