@@ -103,7 +103,7 @@ class Dictionary
 	 *            the word to be found in the dictionary
 	 *
 	 * @throws WordNotFoundException
-	 * @return array Returns an array containing th slang, description and sample sentence
+	 * @return array Returns an array containing the slang, description and sample sentence
 	 */
 	public function findWord($word)
 	{
