@@ -152,7 +152,7 @@ class Dictionary
 		foreach($words as $word){
 
 			if(isset($ranking[strtolower($word)])){
-				$ranking[strtolower($word)] = $ranking[strtolower($word)] + 1;
+				$ranking[strtolower($word)]++;
 			} else{
 				$ranking [strtolower($word)] = 1;
 			}

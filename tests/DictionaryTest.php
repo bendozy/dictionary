@@ -31,6 +31,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 	{
 
 		$this->dictionary->addWord('park', 'Tell someone to relax', 'Guy park well o');
+
 		$this->assertArrayHasKey('park', $this->dictionary->getData());
 
 	}
@@ -43,6 +44,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
 		$this->dictionary->addWord('park', 'Tell someone to relax', 'Guy park well o');
 		$this->dictionary->updateWord('park', 'A car park', 'An updated Test');
+
 		$this->assertEquals('park', $this->dictionary->getData()['park']['slang']);
 		$this->assertEquals('A car park', $this->dictionary->getData()['park']['description']);
 		$this->assertEquals('An updated Test', $this->dictionary->getData()['park']['sample-sentence']);
@@ -55,6 +57,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->dictionary->addWord('gear', 'To attack someone', 'Gear am Gear am');
 		$foundWord = $this->dictionary->findWord('gear');
+
 		$this->assertEquals('gear', $foundWord ['slang']);
 		$this->assertEquals('To attack someone', $foundWord ['description']);
 		$this->assertEquals('Gear am Gear am', $foundWord ['sample-sentence']);
@@ -67,6 +70,7 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->dictionary->addWord('gear', 'To attack someone', 'Gear am Gear am');
 		$this->dictionary->removeWord('gear');
+
 		$this->assertFalse(isset($this->dictionary->getData()['gear']));
 	}
 
@@ -77,27 +81,12 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 	{
 		$word = new Dictionary ();
 		$ranking = $word->wordRanking("Hello it is nice to tell if it is cool to say rubbish");
-		$this->assertArrayHasKey('hello', $ranking);
-		$this->assertArrayHasKey('it', $ranking);
-		$this->assertArrayHasKey('is', $ranking);
-		$this->assertArrayHasKey('nice', $ranking);
-		$this->assertArrayHasKey('to', $ranking);
-		$this->assertArrayHasKey('tell', $ranking);
-		$this->assertArrayHasKey('if', $ranking);
-		$this->assertArrayHasKey('cool', $ranking);
-		$this->assertArrayHasKey('say', $ranking);
-		$this->assertArrayHasKey('rubbish', $ranking);
 
-		$this->assertEquals(1, $ranking ['hello']);
-		$this->assertEquals(2, $ranking ['it']);
-		$this->assertEquals(2, $ranking ['is']);
-		$this->assertEquals(1, $ranking ['nice']);
-		$this->assertEquals(2, $ranking ['to']);
-		$this->assertEquals(1, $ranking ['tell']);
-		$this->assertEquals(1, $ranking ['if']);
-		$this->assertEquals(1, $ranking ['cool']);
-		$this->assertEquals(1, $ranking ['say']);
-		$this->assertEquals(1, $ranking ['rubbish']);
+		foreach($ranking as $key => $value){
+			$this->assertArrayHasKey($key, $ranking);
+			$this->assertEquals($value, $ranking[$key]);
+		}
+
 	}
 }
  
