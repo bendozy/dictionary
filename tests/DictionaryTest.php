@@ -45,7 +45,6 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 		$this->dictionary->addWord('park', 'Tell someone to relax', 'Guy park well o');
 		$this->dictionary->updateWord('park', 'A car park', 'An updated Test');
 
-		$this->assertEquals('park', $this->dictionary->getData()['park']['slang']);
 		$this->assertEquals('A car park', $this->dictionary->getData()['park']['description']);
 		$this->assertEquals('An updated Test', $this->dictionary->getData()['park']['sample-sentence']);
 	}

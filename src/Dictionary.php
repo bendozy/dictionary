@@ -85,11 +85,8 @@ class Dictionary
 	{
 
 		if(isset($this->data[$word])){
-			$this->data[$word] = [
-				'slang' => $word,
-				'description' => $desc,
-				'sample-sentence' => $sentence
-			];
+			$this->data[$word]['description'] = $desc;
+			$this->data[$word]['sample-sentence'] = $sentence;
 		} else{
 			throw new WordNotFoundException($word . ' not found in the dictionary');
 		}
