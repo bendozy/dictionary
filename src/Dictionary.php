@@ -2,6 +2,8 @@
 
 namespace Andela\Dictionary;
 
+use InvalidArgumentException;
+
 /**
  * Class WordFunctions
  *
@@ -17,10 +19,14 @@ class Dictionary
 	/**
 	 * Initialize the constructor
 	 */
-	public function __construct()
+	public function __construct($init_data)
 	{
+        if(! isset($init_data)) {
+	        $this->data = Data::$data;
+        }
 
-		$this->data = Data::$data;
+		$this->data = $init_data;
+
 
 	}
 
@@ -55,8 +61,8 @@ class Dictionary
 	 */
 	public function addWord($word, $desc, $sentence)
 	{
+		if(! array_key_exists($word, $this->data)){
 
-		if(!isset($this->data[$word])){
 			$this->data[$word] = [
 				'slang' => $word,
 				'description' => $desc,
@@ -83,10 +89,12 @@ class Dictionary
 	 */
 	public function updateWord($word, $desc, $sentence)
 	{
+		$data = $this->data[$word];
 
-		if(isset($this->data[$word])){
-			$this->data[$word]['description'] = $desc;
-			$this->data[$word]['sample-sentence'] = $sentence;
+		if(array_key_exists($word, $this->data)){
+			$data['description'] = $desc;
+			$data['sample-sentence'] = $sentence;
+			$this->data[$word] = $data;
 		} else{
 			throw new WordNotFoundException($word . ' not found in the dictionary');
 		}
@@ -104,7 +112,8 @@ class Dictionary
 	 */
 	public function findWord($word)
 	{
-		if(isset ($this->data[$word])){
+
+		if(array_key_exists($word, $this->data)){
 			return $this->data[$word];
 		} else{
 			throw new WordNotFoundException($word . ' not found in the dictionary');
@@ -122,7 +131,7 @@ class Dictionary
 	public function removeWord($word)
 	{
 
-		if(isset ($this->data[$word])){
+		if(array_key_exists($word, $this->data)){
 			unset ($this->data[$word]);
 		} else{
 			throw new WordNotFoundException($word . ' not found in the dictionary');
@@ -138,7 +147,7 @@ class Dictionary
 	 *
 	 * @return array An array of the words with the number of individual occurrences
 	 */
-	public function wordRanking($sentence)
+	public function rankWords($sentence)
 	{
 
 		$words = str_word_count($sentence, 1);
@@ -156,12 +165,22 @@ class Dictionary
 
 		}
 
+		$this->sortWords($ranking);
+
+		return $ranking;
+	}
+
+	private function sortWords(array $ranking)
+	{
+		if(! is_array($ranking)){
+			throw new InvalidArgumentException("The method argument must be of type array");
+		}
+
 		foreach($ranking as $key => $value){
 			$tag [] = $key;
 			$count [] = $value;
 		}
 
 		array_multisort($count, SORT_DESC, $tag, SORT_ASC, $ranking);
-		return $ranking;
 	}
 }

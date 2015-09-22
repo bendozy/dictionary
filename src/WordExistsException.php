@@ -8,6 +8,7 @@
  */
 namespace Andela\Dictionary;
 
+use Exception;
 /**
  * Class WordExistsException
  *
@@ -17,7 +18,7 @@ namespace Andela\Dictionary;
  *
  * @authour Chidozie Ijeomah
  */
-class WordExistsException extends \Exception
+class WordExistsException extends Exception
 {
 	/**
 	 * @var string

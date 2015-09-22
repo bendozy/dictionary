@@ -14,7 +14,7 @@ Classes
    -updateWord($word);
    -findWord($word);
    -removeWord($word);
-   -wordRanking($sentence)
+   -rankWords($sentence)
 
 
 #Testing
@@ -73,7 +73,7 @@ The sample codes below shows how to use this package
 
   ```````
   $word = new \Andela\Dictionary\Dictionary();
-  $word->wordRanking("Hello it is nice to tell if it is cool to say rubbish");
+  $word->rankWords("Hello it is nice to tell if it is cool to say rubbish");
   ```````
 
 ## Change log
