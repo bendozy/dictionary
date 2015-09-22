@@ -68,7 +68,8 @@ class Dictionary
 				'description' => $desc,
 				'sample-sentence' => $sentence
 			];
-		} else{
+
+		} else {
 			throw new WordExistsException($word . ' already exists in the dictionary');
 		}
 
@@ -92,10 +93,12 @@ class Dictionary
 		$data = $this->data[$word];
 
 		if(array_key_exists($word, $this->data)){
+
 			$data['description'] = $desc;
 			$data['sample-sentence'] = $sentence;
 			$this->data[$word] = $data;
-		} else{
+
+		} else {
 			throw new WordNotFoundException($word . ' not found in the dictionary');
 		}
 
@@ -115,7 +118,7 @@ class Dictionary
 
 		if(array_key_exists($word, $this->data)){
 			return $this->data[$word];
-		} else{
+		} else {
 			throw new WordNotFoundException($word . ' not found in the dictionary');
 		}
 	}
@@ -133,7 +136,7 @@ class Dictionary
 
 		if(array_key_exists($word, $this->data)){
 			unset ($this->data[$word]);
-		} else{
+		} else {
 			throw new WordNotFoundException($word . ' not found in the dictionary');
 		}
 
@@ -159,7 +162,7 @@ class Dictionary
 
 			if(isset($ranking[strtolower($word)])){
 				$ranking[strtolower($word)]++;
-			} else{
+			} else {
 				$ranking [strtolower($word)] = 1;
 			}
 
