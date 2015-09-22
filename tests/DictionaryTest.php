@@ -12,8 +12,8 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$this->dictionary = new Dictionary();
-		$this->dictionary->setData(Data::$data);
+		$this->dictionary = new Dictionary(Data::$data);
+
 	}
 
 	/**
@@ -57,9 +57,9 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 		$this->dictionary->addWord('gear', 'To attack someone', 'Gear am Gear am');
 		$foundWord = $this->dictionary->findWord('gear');
 
-		$this->assertEquals('gear', $foundWord ['slang']);
-		$this->assertEquals('To attack someone', $foundWord ['description']);
-		$this->assertEquals('Gear am Gear am', $foundWord ['sample-sentence']);
+		$this->assertEquals('gear', $foundWord['slang']);
+		$this->assertEquals('To attack someone', $foundWord['description']);
+		$this->assertEquals('Gear am Gear am', $foundWord['sample-sentence']);
 	}
 
 	/**
@@ -74,12 +74,11 @@ class DictionaryTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Tests for the wordRanking() function in the Dictionary Test
+	 * Tests for the rankWords() function in the Dictionary Test
 	 */
 	public function testWordRanking()
 	{
-		$word = new Dictionary ();
-		$ranking = $word->wordRanking("Hello it is nice to tell if it is cool to say rubbish");
+		$ranking = $this->dictionary->rankWords("Hello it is nice to tell if it is cool to say rubbish");
 
 		foreach($ranking as $key => $value){
 			$this->assertArrayHasKey($key, $ranking);
