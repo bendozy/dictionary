@@ -8,6 +8,8 @@
  */
 namespace Andela\Dictionary;
 
+use Exception;
+
 /**
  * Class WordNotFoundException
  *
@@ -17,7 +19,7 @@ namespace Andela\Dictionary;
  *
  * @authour Chidozie Ijeomah
  */
-class WordNotFoundException extends \Exception
+class WordNotFoundException extends Exception
 {
 	/**
 	 * @var string
